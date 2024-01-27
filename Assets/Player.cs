@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 using UnityEngine.UIElements;
+using UnityEditor.Experimental.GraphView;
 
 public class Player : MonoBehaviour
 {
@@ -11,9 +12,20 @@ public class Player : MonoBehaviour
     public SwordArea swordAreaClass;
     public float playerSpeed = 4f;
     public GameObject cam;
+    public List<Weapon> weapons;
+    public Weapon weapon;
+
+    public Weapon gun1;
+    public Weapon gun1_2;
+
+    public Weapon melee1;
+
     // Start is called before the first frame update
     void Start()
     {
+        weapons.Add(gun1);
+        weapons.Add(gun1_2);
+        weapons.Add(melee1);
         swordAreaClass = swordArea.GetComponent<SwordArea>();
         //Physics2D.IgnoreCollision(swordArea.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>());
     }
@@ -29,6 +41,31 @@ public class Player : MonoBehaviour
 
         transform.rotation = Quaternion.Euler(0f, 0f, rotationZ);
         Rigidbody2D rigid = gameObject.GetComponent<Rigidbody2D>();
+        
+        if (Input.GetAxis("Mouse ScrollWheel") > 0f)
+        {
+            if (weapons.IndexOf(weapon)+1 < 3) {
+                weapon = weapons[weapons.IndexOf(weapon) + 1];
+            }
+            else
+            {
+                weapon = weapons[0];
+            }
+        }
+        else
+        {
+            if (Input.GetAxis("Mouse ScrollWheel") < 0f)
+            {
+                if (weapons.IndexOf(weapon) - 1 > -1)
+                {
+                    weapon = weapons[weapons.IndexOf(weapon) - 1];
+                }
+                else
+                {
+                    weapon = weapons[2];
+                }
+            }
+        }
         if (Input.GetKey(KeyCode.D))
         {
             rigid.velocity = new Vector2(playerSpeed, rigid.velocity.y);
