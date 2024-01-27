@@ -9,24 +9,20 @@ public class Player : MonoBehaviour
 {
     public GameObject swordArea;
     public SwordArea swordAreaClass;
-    public Camera cam;
+    public GameObject cam;
     // Start is called before the first frame update
     void Start()
     {
         swordAreaClass = swordArea.GetComponent<SwordArea>();
-        cam = GetComponent<Camera>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-
-        difference.Normalize();
-
-        float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-
-        transform.rotation = Quaternion.Euler(0f, 0f, rotationZ);
+        //float hypotenuse = Vector3.Distance(cam.transform.position, Input.mousePosition);
+        float xDistance = cam.transform.position.x - Input.mousePosition.x;
+        float yDistance = cam.transform.position.y-Input.mousePosition.y;
+        //gameObject.transform.rotation = Quaternion.LookRotation(xDistance,yDistance);
         if (Input.GetKey(KeyCode.D))
         {
             gameObject.transform.position += Vector3.right * 5f * Time.deltaTime;
