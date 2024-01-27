@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public GameObject swordArea;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +29,11 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.W))
         {
             gameObject.transform.position += Vector3.up * 5f * Time.deltaTime;
+        }
+
+        if (Input.GetMouseButtonDown(0))
+        {
+            swordArea.
         }
     }
 }
