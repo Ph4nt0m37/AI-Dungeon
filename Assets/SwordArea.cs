@@ -16,7 +16,7 @@ public class SwordArea : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        gameObject.transform.position = new Vector3(player.transform.position.x + 0.41f, player.transform.position.y, player.transform.position.z);
     }
     public void attack()
     {

@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
 {
     public GameObject swordArea;
     public SwordArea swordAreaClass;
+    public float playerSpeed = 4f;
     public GameObject cam;
     // Start is called before the first frame update
     void Start()
@@ -26,21 +27,31 @@ public class Player : MonoBehaviour
         float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
 
         transform.rotation = Quaternion.Euler(0f, 0f, rotationZ);
+        Rigidbody2D rigid = gameObject.GetComponent<Rigidbody2D>();
         if (Input.GetKey(KeyCode.D))
         {
-            gameObject.transform.position += Vector3.right * 5f * Time.deltaTime;
+            rigid.velocity = new Vector2(playerSpeed, rigid.velocity.y);
         }
         if (Input.GetKey(KeyCode.A))
         {
-            gameObject.transform.position += Vector3.left * 5f * Time.deltaTime;
+            rigid.velocity = new Vector2(-1* playerSpeed, rigid.velocity.y);
         }
         if (Input.GetKey(KeyCode.S))
         {
-            gameObject.transform.position += Vector3.down * 5f * Time.deltaTime;
+            rigid.velocity = new Vector2(rigid.velocity.x,-1* playerSpeed);
         }
         if (Input.GetKey(KeyCode.W))
         {
-            gameObject.transform.position += Vector3.up * 5f * Time.deltaTime;
+            rigid.velocity = new Vector2(rigid.velocity.x, playerSpeed);
+        }
+
+        if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S))
+        {
+            rigid.velocity = new Vector2(rigid.velocity.x, 0);
+        }
+        if (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D))
+        {
+            rigid.velocity = new Vector2(0,rigid.velocity.y);
         }
 
         if (Input.GetMouseButtonDown(0))
