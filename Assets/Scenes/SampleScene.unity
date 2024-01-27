@@ -151,7 +151,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 335976708}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.162, z: 0}
+  m_LocalPosition: {x: 0.55, y: -0.03, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -165,7 +165,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 335976708}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -573,6 +573,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4d47679a5bc66f498968da17eb8a9e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
   swordArea: {fileID: 0}
   swordAreaClass: {fileID: 0}
   cam: {fileID: 0}
@@ -696,6 +697,11 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+=======
+  swordArea: {fileID: 335976708}
+  swordAreaClass: {fileID: 0}
+  cam: {fileID: 519420028}
+>>>>>>> 2dd6abfc4471097811cc84e5579ce55a8921827b
 --- !u!1 &1584871148
 GameObject:
   m_ObjectHideFlags: 0
