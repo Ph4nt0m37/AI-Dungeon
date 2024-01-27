@@ -25,7 +25,7 @@ public class SwordArea : MonoBehaviour
         {
             foreach (GameObject obj in touching)
             {
-                Destroy(obj);
+                obj.gameObject.GetComponent<Enemy>().health -= 0;
             }
         }
         catch {}
@@ -33,14 +33,14 @@ public class SwordArea : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject != player)
+        if (collision.gameObject != player && collision.gameObject.GetComponent<Enemy>() != null)
         {
             touching.Add(collision.gameObject);
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject != player)
+        if (collision.gameObject != player && collision.gameObject.GetComponent<Enemy>() != null)
         {
             touching.Remove(collision.gameObject);
         }
