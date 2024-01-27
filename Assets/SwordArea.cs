@@ -18,6 +18,17 @@ public class SwordArea : MonoBehaviour
     {
         
     }
+    public void attack()
+    {
+        try
+        {
+            foreach (GameObject obj in touching)
+            {
+                Destroy(obj);
+            }
+        }
+        catch {}
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
