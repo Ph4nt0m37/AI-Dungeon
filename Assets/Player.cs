@@ -5,6 +5,8 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public float acceleration = 0;
+    public float maxAcceleration = 0;
+    public float minAcceleration = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -14,12 +16,20 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        gameObject.transform.position += Vector3.right * acceleration * Time.deltaTime;
         if (Input.GetKey(KeyCode.D))
         {
-            gameObject.transform.position += Vector3.right * acceleration * Time.deltaTime;
-            if (acceleration < 2f)
+            if (acceleration < 10f)
             {
-                acceleration += 0.03f;
+                acceleration += 0.02f;
+            }
+        }
+        else
+        {
+            if (acceleration > 0)
+            {
+                acceleration -= 0.02f;
+
             }
         }
     }
