@@ -12,14 +12,20 @@ public class Player : MonoBehaviour
     public SwordArea swordAreaClass;
     public float playerSpeed = 4f;
     public GameObject cam;
-    public List<string> weapons;
-    public string weapon;
+    public List<Weapon> weapons;
+    public Weapon weapon;
+
+    public Weapon gun1;
+    public Weapon gun1_2;
+
+    public Weapon melee1;
+
     // Start is called before the first frame update
     void Start()
     {
-        weapons.Add("gun1");
-        weapons.Add("gun1");
-        weapons.Add("melee1");
+        weapons.Add(gun1);
+        weapons.Add(gun1_2);
+        weapons.Add(melee1);
         swordAreaClass = swordArea.GetComponent<SwordArea>();
         //Physics2D.IgnoreCollision(swordArea.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>());
     }
@@ -38,8 +44,7 @@ public class Player : MonoBehaviour
         
         if (Input.GetAxis("Mouse ScrollWheel") > 0f)
         {
-            Debug.Log(Input.GetAxis("Mouse ScrollWheel"));
-            if (weapon.IndexOf(weapon)+1 < 2) {
+            if (weapons.IndexOf(weapon)+1 < 3) {
                 weapon = weapons[weapons.IndexOf(weapon) + 1];
             }
             else
@@ -47,16 +52,18 @@ public class Player : MonoBehaviour
                 weapon = weapons[0];
             }
         }
-        if (Input.GetAxis("Mouse ScrollWheel") < 0f)
+        else
         {
-            Debug.Log(Input.GetAxis("Mouse ScrollWheel"));
-            if (weapon.IndexOf(weapon)-1 < 0)
+            if (Input.GetAxis("Mouse ScrollWheel") < 0f)
             {
-                weapon = weapons[weapons.IndexOf(weapon) -1];
-            }
-            else
-            {
-                weapon = weapons[2];
+                if (weapons.IndexOf(weapon) - 1 > -1)
+                {
+                    weapon = weapons[weapons.IndexOf(weapon) - 1];
+                }
+                else
+                {
+                    weapon = weapons[2];
+                }
             }
         }
         if (Input.GetKey(KeyCode.D))

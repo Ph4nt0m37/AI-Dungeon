@@ -21,11 +21,12 @@ public class SwordArea : MonoBehaviour
     }
     public void attack()
     {
+        Debug.Log(player.GetComponent<Player>().weapon.damage);
         try
         {
             foreach (GameObject obj in touching)
             {
-                obj.gameObject.GetComponent<Enemy>().health -= 0;
+                obj.gameObject.GetComponent<Enemy>().health -= player.GetComponent<Player>().weapon.damage;
             }
         }
         catch {}
