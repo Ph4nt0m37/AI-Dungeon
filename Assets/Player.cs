@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     void Start()
     {
         swordAreaClass = swordArea.GetComponent<SwordArea>();
+        //Physics2D.IgnoreCollision(swordArea.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>());
     }
 
     // Update is called once per frame
