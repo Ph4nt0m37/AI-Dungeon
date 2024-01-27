@@ -21,7 +21,6 @@ public class SwordArea : MonoBehaviour
     }
     public void attack()
     {
-        Debug.Log(player.GetComponent<Player>().weapon.damage);
         try
         {
             foreach (GameObject obj in touching)
