@@ -22,7 +22,7 @@ public class Enemy : MonoBehaviour
         player = GameObject.Find("Player");
         gameSpawnerObj = GameObject.Find("GameSpawner");
         gameSpawner = gameSpawnerObj.GetComponent<GameSpawner>();
-        health = 100 * gameSpawner.difficulty;
+        health = 100 * (gameSpawner.difficulty/4);
     }
 
     // Update is called once per frame
@@ -56,7 +56,7 @@ public class Enemy : MonoBehaviour
         if (collision.gameObject == player)
         {
             touching.Add(collision.gameObject);
-            StartCoroutine(dealDamage(damage*gameSpawner.difficulty));
+            StartCoroutine(dealDamage(damage*(gameSpawner.difficulty/4)));
         }
     }
     public void OnTriggerExit2D(Collider2D collision)
