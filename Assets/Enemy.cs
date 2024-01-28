@@ -6,9 +6,12 @@ using static UnityEngine.GraphicsBuffer;
 
 public class Enemy : MonoBehaviour
 {
-    public int health = 100;
     public GameObject player;
+    public List<GameObject> touching = new List<GameObject>();
+
+    public int damage = 8;
     public float speed = 3f;
+    public int health = 100;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +42,31 @@ public class Enemy : MonoBehaviour
         else
         {
             transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+        }
+    }
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject == player)
+        {
+            touching.Add(collision.gameObject);
+            StartCoroutine(dealDamage(damage));
+        }
+    }
+    public void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject == player)
+        {
+            touching.Remove(collision.gameObject);
+        }
+    }
+
+    IEnumerator dealDamage(int damage)
+    {
+        if (touching.Contains(player))
+        {
+            player.GetComponent<Player>().health -= damage;
+            yield return new WaitForSeconds(0.5f);
+            StartCoroutine(dealDamage(damage));
         }
     }
 }
