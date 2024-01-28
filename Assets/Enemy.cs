@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 using static UnityEngine.GraphicsBuffer;
 
 public class Enemy : MonoBehaviour
@@ -22,7 +23,8 @@ public class Enemy : MonoBehaviour
         player = GameObject.Find("Player");
         gameSpawnerObj = GameObject.Find("GameSpawner");
         gameSpawner = gameSpawnerObj.GetComponent<GameSpawner>();
-        health = 100 * (gameSpawner.difficulty/4);
+        health = 100 * gameSpawner.difficulty;
+        //Physics2D.IgnoreCollision(GetComponent<PolygonCollider2D>(), playerNo.GetComponent<TilemapCollider2D>(),false);
     }
 
     // Update is called once per frame
@@ -31,6 +33,7 @@ public class Enemy : MonoBehaviour
         if (health <= 0)
         {
             Destroy(gameObject);
+            gameSpawner.enemyCount--;
         }
         Rigidbody2D rigid = GetComponent<Rigidbody2D>();
         Vector3 movePosition = transform.position;
@@ -50,20 +53,17 @@ public class Enemy : MonoBehaviour
         {
             transform.rotation = Quaternion.Euler(0f, 180f, 0f);
         }
-    }
-    public void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject == player)
+        if (Vector3.Distance(transform.position,player.transform.position) < 5.5)
         {
-            touching.Add(collision.gameObject);
-            StartCoroutine(dealDamage(damage*(gameSpawner.difficulty/4)));
+            if (!touching.Contains(player))
+            {
+                touching.Add(player);
+                StartCoroutine(dealDamage(damage * gameSpawner.difficulty));
+            }
         }
-    }
-    public void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.gameObject == player)
+        else
         {
-            touching.Remove(collision.gameObject);
+            touching.Remove(player);
         }
     }
 

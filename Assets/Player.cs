@@ -32,8 +32,6 @@ public class Player : MonoBehaviour
     public GameObject gameSpawnerObj;
     public GameSpawner gameSpawner;
 
-    public int roundNum = 1;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -123,11 +121,6 @@ public class Player : MonoBehaviour
         if (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D))
         {
             rigid.velocity = new Vector2(0,rigid.velocity.y);
-        }
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            gameSpawner.startRound(roundNum);
-            roundNum += 1;
         }
         if (Input.GetMouseButtonDown(0))
         {
