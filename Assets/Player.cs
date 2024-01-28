@@ -103,8 +103,8 @@ public class Player : MonoBehaviour
         if (health <= 0f)
         {
             GetComponent<SpriteRenderer>().sprite = deadTexture;
-            diedText.enabled = true;
-            SceneManager.LoadScene("SampleScene");
+            //diedText.enabled = true;
+            StartCoroutine(Respawn());
         }
         if (Input.GetKey(KeyCode.D))
         {
@@ -137,5 +137,10 @@ public class Player : MonoBehaviour
         {
             swordAreaClass.attack();
         }
+    }
+    IEnumerator Respawn()
+    {
+        yield return new WaitForSeconds(3);
+        SceneManager.LoadScene("SampleScene");
     }
 }
