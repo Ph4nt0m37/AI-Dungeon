@@ -102,9 +102,8 @@ MonoBehaviour:
   player: {fileID: 0}
   touching: []
   damage: 8
-  speed: 20
+  speed: 0.05
   health: 100
-  playerNo: {fileID: 0}
   gameSpawnerObj: {fileID: 0}
   gameSpawner: {fileID: 0}
 --- !u!60 &7086554928199211275

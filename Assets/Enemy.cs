@@ -38,11 +38,11 @@ public class Enemy : MonoBehaviour
         Rigidbody2D rigid = GetComponent<Rigidbody2D>();
         Vector3 movePosition = transform.position;
 
-        movePosition.x = Mathf.MoveTowards(transform.position.x, player.transform.position.x, speed * Time.deltaTime);
-        movePosition.y = Mathf.MoveTowards(transform.position.y, player.transform.position.y, speed * Time.deltaTime);
+        movePosition.x = Mathf.MoveTowards(transform.position.x, player.transform.position.x, speed);
+        movePosition.y = Mathf.MoveTowards(transform.position.y, player.transform.position.y, speed);
 
         rigid.MovePosition(movePosition);
-        rigid.velocity = Vector3.MoveTowards(transform.position, player.transform.position, speed * Time.deltaTime);
+        rigid.velocity = Vector3.MoveTowards(transform.position, player.transform.position, speed);
         Vector2 difference = player.transform.position - transform.position;
         float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
         if (rotationZ <= 90 && rotationZ >= -90)
