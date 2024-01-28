@@ -8,10 +8,14 @@ public class SwordArea : MonoBehaviour
     public GameObject player;
     public List<GameObject> touching = new List<GameObject>();
     public GameObject walls;
+
+    public GameObject swingArc;
+    public Swing swing;
     // Start is called before the first frame update
     void Start()
     {
         //Physics2D.IgnoreCollision(walls.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>());
+        swing = swingArc.GetComponent<Swing>();
     }
 
     // Update is called once per frame
@@ -21,6 +25,7 @@ public class SwordArea : MonoBehaviour
     }
     public void attack()
     {
+        swing.swing();
         try
         {
             foreach (GameObject obj in touching)

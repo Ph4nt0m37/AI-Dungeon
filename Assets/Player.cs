@@ -27,6 +27,7 @@ public class Player : MonoBehaviour
         weapons.Add(gun1_2);
         weapons.Add(melee1);
         swordAreaClass = swordArea.GetComponent<SwordArea>();
+        weapon = weapons[0];
         //Physics2D.IgnoreCollision(swordArea.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>());
     }
 
