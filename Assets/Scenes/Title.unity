@@ -181,19 +181,22 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'How To Play
+  m_text: '[OPEN IN FULL SCREEN]
+
+    How To Play
 
     WASD keys for movement
 
-    Attack with left click pointed
-    towards your cursor
+    Attack
+    with left click pointed towards your cursor
 
-    Attack the increasingly difficult opponents and get
-    scrap
+    Attack the increasingly difficult
+    opponents and get scrap
 
     Click on the shop to open it
 
-    Press escape to close it'
+    Press escape to
+    close it'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
