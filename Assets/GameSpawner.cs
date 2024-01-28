@@ -13,7 +13,7 @@ public class GameSpawner : MonoBehaviour
     public TextMeshProUGUI roundText;
     public int enemyCount = 0;
 
-    public int difficulty = 1;
+    public float difficulty = 1f;
     public int roundNum = 1;
 
     public GameObject enemy1;
@@ -43,14 +43,14 @@ public class GameSpawner : MonoBehaviour
     public void startRound(int roundNum)
     {
         roundText.text = "Round " + roundNum;
-        for (int i =0; i < roundNum; i++)
+        for (int i = 0; i < roundNum; i++)
         {
             foreach (GameObject spawn in spawns)
             {
                 spawnEnemy(enemy1, spawn);
             }
         }
-        difficulty = 1 * (roundNum / 8);
+        difficulty = 1 + (roundNum / 8);
     }
 
     public void spawnEnemy(GameObject enemyType, GameObject spawn)

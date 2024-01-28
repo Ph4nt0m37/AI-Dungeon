@@ -18,6 +18,7 @@ MonoBehaviour:
   accuracy: 0
   velocity: 10
   weight: 0
-  range: 0
+  range: 1
   count: 1
+  attackDelay: 0
   aoe: 0

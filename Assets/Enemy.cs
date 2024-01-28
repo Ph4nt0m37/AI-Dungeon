@@ -23,7 +23,7 @@ public class Enemy : MonoBehaviour
         player = GameObject.Find("Player");
         gameSpawnerObj = GameObject.Find("GameSpawner");
         gameSpawner = gameSpawnerObj.GetComponent<GameSpawner>();
-        health = 100 * gameSpawner.difficulty;
+        health = 100 * (int) gameSpawner.difficulty;
         //Physics2D.IgnoreCollision(GetComponent<PolygonCollider2D>(), playerNo.GetComponent<TilemapCollider2D>(),false);
     }
 
@@ -53,12 +53,12 @@ public class Enemy : MonoBehaviour
         {
             transform.rotation = Quaternion.Euler(0f, 180f, 0f);
         }
-        if (Vector3.Distance(transform.position,player.transform.position) < 5.5)
+        if (Vector3.Distance(transform.position,player.transform.position) < 5.3)
         {
             if (!touching.Contains(player))
             {
                 touching.Add(player);
-                StartCoroutine(dealDamage(damage * gameSpawner.difficulty));
+                StartCoroutine(dealDamage(damage * (int) gameSpawner.difficulty));
             }
         }
         else

@@ -75,6 +75,7 @@ public class Player : MonoBehaviour
         {
             if (weapons.IndexOf(weapon)+1 < 3) {
                 weapon = weapons[weapons.IndexOf(weapon) + 1];
+                swordArea.transform.localScale = new Vector3(weapon.range,weapon.range,weapon.range);
             }
             else
             {
@@ -88,6 +89,7 @@ public class Player : MonoBehaviour
                 if (weapons.IndexOf(weapon) - 1 > -1)
                 {
                     weapon = weapons[weapons.IndexOf(weapon) - 1];
+                    swordArea.transform.localScale = new Vector3(weapon.range, weapon.range, weapon.range);
                 }
                 else
                 {
