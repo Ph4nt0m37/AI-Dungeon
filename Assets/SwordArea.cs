@@ -11,11 +11,15 @@ public class SwordArea : MonoBehaviour
 
     public GameObject swingArc;
     public Swing swing;
+
+    public GameObject weapon;
+    public SwingWeapon swingWeapon;
     // Start is called before the first frame update
     void Start()
     {
         //Physics2D.IgnoreCollision(walls.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>());
         swing = swingArc.GetComponent<Swing>();
+        swingWeapon = weapon.GetComponent<SwingWeapon>();
     }
 
     // Update is called once per frame
@@ -36,14 +40,14 @@ public class SwordArea : MonoBehaviour
         catch {}
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    public void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject != player && collision.gameObject.GetComponent<Enemy>() != null)
         {
             touching.Add(collision.gameObject);
         }
     }
-    private void OnTriggerExit2D(Collider2D collision)
+    public void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject != player && collision.gameObject.GetComponent<Enemy>() != null)
         {
