@@ -17,6 +17,8 @@ public class Enemy : MonoBehaviour
     public GameObject gameSpawnerObj;
     public GameSpawner gameSpawner;
 
+    public Player playerClass;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,6 +36,7 @@ public class Enemy : MonoBehaviour
         {
             Destroy(gameObject);
             gameSpawner.enemyCount--;
+            playerClass.scrap += 1;
         }
         Rigidbody2D rigid = GetComponent<Rigidbody2D>();
         Vector3 movePosition = transform.position;

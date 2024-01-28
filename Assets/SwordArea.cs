@@ -41,6 +41,7 @@ public class SwordArea : MonoBehaviour
                     StartCoroutine(dealDamage(player.GetComponent<Player>().weapon.damage,obj));
                 }
                 cooldown = player.GetComponent<Player>().weapon.attackDelay;
+                Debug.Log(cooldown);
                 StartCoroutine(decreaseCooldown(cooldown));
             }
             catch { }

@@ -35,6 +35,9 @@ public class Player : MonoBehaviour
     public GameSpawner gameSpawner;
     public Sprite deadTexture;
 
+    public int scrap;
+    public TextMeshProUGUI scrapText;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -54,6 +57,8 @@ public class Player : MonoBehaviour
         healthBar.setHealth(health);
 
         healthText.text = health.ToString();
+
+        scrapText.text = scrap.ToString()+" Scrap";
 
         swordStuff.transform.position = gameObject.transform.position;
 

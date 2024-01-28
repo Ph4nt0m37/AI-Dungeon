@@ -50,7 +50,7 @@ public class GameSpawner : MonoBehaviour
                 spawnEnemy(enemy1, spawn);
             }
         }
-        difficulty = 1 + (roundNum / 8);
+        difficulty += 0.125f;
     }
 
     public void spawnEnemy(GameObject enemyType, GameObject spawn)
