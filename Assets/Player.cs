@@ -123,7 +123,7 @@ public class Player : MonoBehaviour
     IEnumerator Respawn()
     {
         yield return new WaitForSeconds(3);
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("Title");
     }
     public void setWeapon(Weapon weapon2)
     {
