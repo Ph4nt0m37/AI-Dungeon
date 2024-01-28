@@ -27,9 +27,11 @@ public class Player : MonoBehaviour
 
     public Weapon slot1;
     public Weapon slot2;
+    public Sprite sprite2;
     public Weapon slot3;
+    public Sprite sprite3;
 
-
+    public GameObject stick;
     public GameObject gameSpawnerObj;
     public GameSpawner gameSpawner;
     public Sprite deadTexture;
@@ -117,5 +119,17 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(3);
         SceneManager.LoadScene("SampleScene");
+    }
+    public void setWeapon(Weapon weapon2)
+    {
+        weapon = weapon2;
+        if (weapon2==slot2)
+        {
+            stick.GetComponent<SpriteRenderer>().sprite = sprite2;
+        }
+        if (weapon2 == slot3)
+        {
+            stick.GetComponent<SpriteRenderer>().sprite = sprite3;
+        }
     }
 }
