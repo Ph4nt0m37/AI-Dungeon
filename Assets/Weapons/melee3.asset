@@ -20,5 +20,5 @@ MonoBehaviour:
   weight: 0
   range: 5
   count: 1
-  attackDelay: 2
+  attackDelay: 1.25
   aoe: 0

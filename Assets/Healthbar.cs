@@ -9,4 +9,8 @@ public class Healthbar : MonoBehaviour
     {
         gameObject.GetComponent<Slider>().value = health;
     }
+    public void setMaxHealth(int max)
+    {
+        gameObject.GetComponent<Slider>().maxValue = max;
+    }
 }

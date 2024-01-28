@@ -36926,6 +36926,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9c9a26eee96cca4995fc6dc9dae7b99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  healthBar: {fileID: 762474129}
+  healthBarObj: {fileID: 762474127}
 --- !u!212 &1641036058
 SpriteRenderer:
   m_ObjectHideFlags: 0

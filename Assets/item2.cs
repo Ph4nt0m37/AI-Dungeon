@@ -24,14 +24,21 @@ public class item2 : MonoBehaviour
             if (player.scrap >= 3)
             {
                 StartCoroutine(setColor(Color.green));
-                if (player.health + (player.health / 50) < player.maxHealth)
+                if (player.health + (player.health / 2)+5 < player.maxHealth)
                 {
-                    player.health += player.health / 50;
-
+                    player.health += (player.health / 2)+5;
+                    player.scrap -= 3;
                 }
                 else
                 {
-                    StartCoroutine(setColor(Color.red));
+                    if (player.health!=player.maxHealth)
+                    {
+                        player.health = player.maxHealth;
+                    }
+                    else
+                    {
+                        StartCoroutine(setColor(Color.red));
+                    }
                 }
             }
             else
