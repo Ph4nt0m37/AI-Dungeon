@@ -7,6 +7,7 @@ using UnityEngine.UIElements;
 using UnityEditor.Experimental.GraphView;
 using System.Net.Sockets;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class Player : MonoBehaviour
     public GameObject healthBarObj;
 
     public TextMeshProUGUI healthText;
+    public TextMeshProUGUI diedText;
 
     public Weapon slot1;
     public Weapon slot2;
@@ -31,6 +33,7 @@ public class Player : MonoBehaviour
 
     public GameObject gameSpawnerObj;
     public GameSpawner gameSpawner;
+    public Sprite deadTexture;
 
     // Start is called before the first frame update
     void Start()
@@ -96,6 +99,12 @@ public class Player : MonoBehaviour
                     weapon = weapons[2];
                 }
             }
+        }
+        if (health <= 0f)
+        {
+            GetComponent<SpriteRenderer>().sprite = deadTexture;
+            diedText.enabled = true;
+            SceneManager.LoadScene("SampleScene");
         }
         if (Input.GetKey(KeyCode.D))
         {
