@@ -6,6 +6,7 @@ using static UnityEngine.GraphicsBuffer;
 using UnityEngine.UIElements;
 using UnityEditor.Experimental.GraphView;
 using System.Net.Sockets;
+using TMPro;
 
 public class Player : MonoBehaviour
 {
@@ -16,6 +17,12 @@ public class Player : MonoBehaviour
     public List<Weapon> weapons;
     public Weapon weapon;
     public GameObject swordStuff;
+
+    public int health = 100;
+    public Healthbar healthBar;
+    public GameObject healthBarObj;
+
+    public TextMeshProUGUI healthText;
 
     public Weapon slot1;
     public Weapon slot2;
@@ -30,12 +37,17 @@ public class Player : MonoBehaviour
         weapons.Add(slot3);
         swordAreaClass = swordArea.GetComponent<SwordArea>();
         weapon = weapons[0];
+        healthBar = healthBarObj.GetComponent<Healthbar>();
         //Physics2D.IgnoreCollision(swordArea.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>());
     }
 
     // Update is called once per frame
     void Update()
     {
+        healthBar.setHealth(health);
+
+        healthText.text = health.ToString();
+
         swordStuff.transform.position = gameObject.transform.position;
 
         Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - swordStuff.transform.position;
