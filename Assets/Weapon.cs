@@ -15,7 +15,7 @@ public class Weapon : ScriptableObject
     public int count;
     public float attackDelay;
     public int aoe;
-    //hi
+
     // Start is called before the first frame update
     void Start()
     {

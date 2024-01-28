@@ -5282,7 +5282,6 @@ MonoBehaviour:
   swing: {fileID: 0}
   weapon: {fileID: 2114405396}
   swingWeapon: {fileID: 0}
-  cooldown: 0
 --- !u!58 &335976714
 CircleCollider2D:
   m_ObjectHideFlags: 0
