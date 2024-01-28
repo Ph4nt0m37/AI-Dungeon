@@ -4169,7 +4169,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 335976708}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -4873,7 +4873,7 @@ MonoBehaviour:
   slot3: {fileID: 11400000, guid: ce6e97635f010bf4caf9f7c9b7bc7e6a, type: 2}
   gameSpawnerObj: {fileID: 64088664}
   gameSpawner: {fileID: 0}
-  deadTexture: {fileID: 0}
+  deadTexture: {fileID: 21300000, guid: 8d30f108a469e454281cd7ff653b05cf, type: 3}
 --- !u!60 &699565064
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -49024,7 +49024,7 @@ SpriteRenderer:
   m_Size: {x: 0.16, y: 0.16}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &2114405399
