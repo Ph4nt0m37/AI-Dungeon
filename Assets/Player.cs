@@ -5,6 +5,7 @@ using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 using UnityEngine.UIElements;
 using UnityEditor.Experimental.GraphView;
+using System.Net.Sockets;
 
 public class Player : MonoBehaviour
 {
@@ -14,18 +15,19 @@ public class Player : MonoBehaviour
     public GameObject cam;
     public List<Weapon> weapons;
     public Weapon weapon;
+    public GameObject swordStuff;
 
-    public Weapon gun1;
-    public Weapon gun1_2;
+    public Weapon slot1;
+    public Weapon slot2;
 
-    public Weapon melee1;
+    public Weapon slot3;
 
     // Start is called before the first frame update
     void Start()
     {
-        weapons.Add(gun1);
-        weapons.Add(gun1_2);
-        weapons.Add(melee1);
+        weapons.Add(slot1);
+        weapons.Add(slot2);
+        weapons.Add(slot3);
         swordAreaClass = swordArea.GetComponent<SwordArea>();
         weapon = weapons[0];
         //Physics2D.IgnoreCollision(swordArea.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>());
@@ -34,13 +36,23 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        swordStuff.transform.position = gameObject.transform.position;
+
+        Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - swordStuff.transform.position;
 
         difference.Normalize();
 
         float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
 
-        transform.rotation = Quaternion.Euler(0f, 0f, rotationZ);
+        swordStuff.transform.rotation = Quaternion.Euler(0f, 0f, rotationZ);
+        if (rotationZ <= 90 && rotationZ >= -90)
+        {
+            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+        }
+        else
+        {
+            transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+        }
         Rigidbody2D rigid = gameObject.GetComponent<Rigidbody2D>();
         
         if (Input.GetAxis("Mouse ScrollWheel") > 0f)
@@ -70,10 +82,12 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.D))
         {
             rigid.velocity = new Vector2(playerSpeed, rigid.velocity.y);
+            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
         }
         if (Input.GetKey(KeyCode.A))
         {
             rigid.velocity = new Vector2(-1* playerSpeed, rigid.velocity.y);
+            transform.rotation = Quaternion.Euler(0f, 180f, 0f);
         }
         if (Input.GetKey(KeyCode.S))
         {
