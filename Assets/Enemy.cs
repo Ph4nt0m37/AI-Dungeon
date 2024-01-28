@@ -12,17 +12,10 @@ public class Enemy : MonoBehaviour
     public int damage = 8;
     public float speed = 3f;
     public int health = 100;
-
-    public GameObject gameSpawnerObj;
-    public GameSpawner gameSpawner;
-
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("Player");
-        gameSpawnerObj = GameObject.Find("GameController");
-        gameSpawner = gameSpawnerObj.GetComponent<GameSpawner>();
-        health = 100 * gameSpawner.difficulty;
+        
     }
 
     // Update is called once per frame
@@ -56,7 +49,7 @@ public class Enemy : MonoBehaviour
         if (collision.gameObject == player)
         {
             touching.Add(collision.gameObject);
-            StartCoroutine(dealDamage(damage*gameSpawner.difficulty));
+            StartCoroutine(dealDamage(damage));
         }
     }
     public void OnTriggerExit2D(Collider2D collision)

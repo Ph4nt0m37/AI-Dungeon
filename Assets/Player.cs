@@ -29,15 +29,9 @@ public class Player : MonoBehaviour
 
     public Weapon slot3;
 
-    public GameObject gameSpawnerObj;
-    public GameSpawner gameSpawner;
-
-    public int roundNum = 1;
-
     // Start is called before the first frame update
     void Start()
     {
-        gameSpawner = gameSpawnerObj.GetComponent<GameSpawner>();
         weapons.Add(slot1);
         weapons.Add(slot2);
         weapons.Add(slot3);
@@ -124,11 +118,7 @@ public class Player : MonoBehaviour
         {
             rigid.velocity = new Vector2(0,rigid.velocity.y);
         }
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            gameSpawner.startRound(roundNum);
-            roundNum += 1;
-        }
+
         if (Input.GetMouseButtonDown(0))
         {
             swordAreaClass.attack();
