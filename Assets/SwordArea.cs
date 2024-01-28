@@ -14,6 +14,8 @@ public class SwordArea : MonoBehaviour
 
     public GameObject weapon;
     public SwingWeapon swingWeapon;
+
+    public float cooldown = 0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,15 +31,20 @@ public class SwordArea : MonoBehaviour
     }
     public void attack()
     {
-        swing.swing();
-        try
+        if (cooldown <= 0)
         {
-            foreach (GameObject obj in touching)
+            swing.swing();
+            try
             {
-                obj.gameObject.GetComponent<Enemy>().health -= player.GetComponent<Player>().weapon.damage;
+                foreach (GameObject obj in touching)
+                {
+                    StartCoroutine(dealDamage(player.GetComponent<Player>().weapon.damage,obj));
+                }
+                cooldown = player.GetComponent<Player>().weapon.attackDelay;
+                StartCoroutine(decreaseCooldown(cooldown));
             }
+            catch { }
         }
-        catch {}
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
@@ -52,6 +59,28 @@ public class SwordArea : MonoBehaviour
         if (collision.gameObject != player && collision.gameObject.GetComponent<Enemy>() != null)
         {
             touching.Remove(collision.gameObject);
+        }
+    }
+
+    IEnumerator decreaseCooldown(float cooldown2)
+    {
+        yield return new WaitForSeconds(cooldown2);
+        cooldown = 0f;
+    }
+
+    IEnumerator dealDamage(float damage, GameObject obj)
+    {
+        obj.gameObject.GetComponent<Enemy>().health -= player.GetComponent<Player>().weapon.damage;
+        if (obj != null)
+        {
+            obj.GetComponent<SpriteRenderer>().color = Color.red;
+            yield return new WaitForSeconds(0.25f);
+            try
+            {
+                obj.GetComponent<SpriteRenderer>().color = Color.white;
+            }catch{
+
+            }
         }
     }
 }

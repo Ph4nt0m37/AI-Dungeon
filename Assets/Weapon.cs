@@ -13,6 +13,7 @@ public class Weapon : ScriptableObject
     public int weight;
     public int range;
     public int count;
+    public float attackDelay;
     public int aoe;
 
     // Start is called before the first frame update
