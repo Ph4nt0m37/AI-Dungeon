@@ -8,7 +8,7 @@ public class item1 : MonoBehaviour
     Player player;
     void Start()
     {
-        player = new Player();
+        player = GameObject.Find("Player").GetComponent<Player>();
     }
 
     // Update is called once per frame
@@ -18,16 +18,32 @@ public class item1 : MonoBehaviour
     }
     public void OnMouseOver()
     {
-        if (Input.GetMouseButtonDown(0) && player.scrap >=15) {
-            if (player.weapon==player.slot1)
+        if (Input.GetMouseButtonDown(0)) {
+            if (player.scrap >= 15)
             {
-                player.setWeapon(player.slot2);
-                player.scrap -= 15;
-            }else if (player.weapon==player.slot2)
+                StartCoroutine(setColor(Color.green));
+                if (player.weapon == player.slot1)
+                {
+                    player.setWeapon(player.slot2);
+                    player.scrap -= 15;
+                }
+                else if (player.weapon == player.slot2)
+                {
+                    player.setWeapon(player.slot3);
+                    player.scrap -= 15;
+                }
+            }
+            else
             {
-                player.setWeapon(player.slot3);
-                player.scrap -= 15;
+                StartCoroutine(setColor(Color.red));
             }
         }
+    }
+
+    IEnumerator setColor(Color color)
+    {
+        GetComponent<SpriteRenderer>().color = color;
+        yield return new WaitForSeconds(0.10f);
+        GetComponent<SpriteRenderer>().color = Color.white;
     }
 }

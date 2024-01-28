@@ -25,6 +25,9 @@ public class Player : MonoBehaviour
     public TextMeshProUGUI healthText;
     public TextMeshProUGUI diedText;
 
+    public GameObject shop;
+    public OpenShop openShop;
+
     public Weapon slot1;
     public Weapon slot2;
     public Sprite sprite2;
@@ -42,6 +45,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        openShop = shop.GetComponent<OpenShop>();
         gameSpawner = gameSpawnerObj.GetComponent<GameSpawner>();
         swordAreaClass = swordArea.GetComponent<SwordArea>();
         weapon = slot1;
@@ -83,21 +87,21 @@ public class Player : MonoBehaviour
             //diedText.enabled = true;
             StartCoroutine(Respawn());
         }
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.D) && health>0 && !openShop.freezeMovement)
         {
             rigid.velocity = new Vector2(playerSpeed, rigid.velocity.y);
             transform.rotation = Quaternion.Euler(0f, 0f, 0f);
         }
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A) && health > 0 && !openShop.freezeMovement)
         {
             rigid.velocity = new Vector2(-1* playerSpeed, rigid.velocity.y);
             transform.rotation = Quaternion.Euler(0f, 180f, 0f);
         }
-        if (Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.S) && health > 0 && !openShop.freezeMovement)
         {
             rigid.velocity = new Vector2(rigid.velocity.x,-1* playerSpeed);
         }
-        if (Input.GetKey(KeyCode.W))
+        if (Input.GetKey(KeyCode.W) && health > 0 && !openShop.freezeMovement)
         {
             rigid.velocity = new Vector2(rigid.velocity.x, playerSpeed);
         }
