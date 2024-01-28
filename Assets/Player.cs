@@ -17,17 +17,17 @@ public class Player : MonoBehaviour
     public Weapon weapon;
     public GameObject swordStuff;
 
-    public Weapon slot1;
-    public Weapon slot2;
+    public Weapon gun1;
+    public Weapon gun1_2;
 
-    public Weapon slot3;
+    public Weapon melee1;
 
     // Start is called before the first frame update
     void Start()
     {
-        weapons.Add(slot1);
-        weapons.Add(slot2);
-        weapons.Add(slot3);
+        weapons.Add(gun1);
+        weapons.Add(gun1_2);
+        weapons.Add(melee1);
         swordAreaClass = swordArea.GetComponent<SwordArea>();
         weapon = weapons[0];
         //Physics2D.IgnoreCollision(swordArea.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>());
@@ -82,12 +82,10 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.D))
         {
             rigid.velocity = new Vector2(playerSpeed, rigid.velocity.y);
-            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
         }
         if (Input.GetKey(KeyCode.A))
         {
             rigid.velocity = new Vector2(-1* playerSpeed, rigid.velocity.y);
-            transform.rotation = Quaternion.Euler(0f, 180f, 0f);
         }
         if (Input.GetKey(KeyCode.S))
         {

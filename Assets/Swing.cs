@@ -20,6 +20,5 @@ public class Swing : MonoBehaviour
     public void swing()
     {
         animator.SetTrigger("Attacked");
-        animator.SetTrigger("Swing");
     }
 }
