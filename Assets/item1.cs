@@ -32,6 +32,10 @@ public class item1 : MonoBehaviour
                     player.setWeapon(player.slot3);
                     player.scrap -= 15;
                 }
+                else
+                {
+                    StartCoroutine(setColor(Color.red));
+                }
             }
             else
             {

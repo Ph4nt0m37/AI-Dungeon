@@ -24,7 +24,15 @@ public class OpenShop : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            shop.GetComponent<SpriteRenderer>().enabled = false;
+            text.enabled = false;
+            item1.GetComponent<SpriteRenderer>().enabled = false;
+            item2.GetComponent<SpriteRenderer>().enabled = false;
+            item3.GetComponent<SpriteRenderer>().enabled = false;
+            freezeMovement = false;
+        }
     }
     public void OnMouseOver()
     {

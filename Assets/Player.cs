@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
     public Weapon weapon;
     public GameObject swordStuff;
 
+    public int maxHealth = 100;
     public int health = 100;
     public Healthbar healthBar;
     public GameObject healthBarObj;
@@ -126,9 +127,10 @@ public class Player : MonoBehaviour
     }
     public void setWeapon(Weapon weapon2)
     {
-        weapon = weapon2;
+        weapon = weapon2;   
         if (weapon2==slot2)
         {
+            Debug.Log("test");
             stick.GetComponent<SpriteRenderer>().sprite = sprite2;
         }
         if (weapon2 == slot3)
