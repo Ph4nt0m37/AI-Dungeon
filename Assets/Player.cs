@@ -15,7 +15,6 @@ public class Player : MonoBehaviour
     public SwordArea swordAreaClass;
     public float playerSpeed = 4f;
     public GameObject cam;
-    public List<Weapon> weapons;
     public Weapon weapon;
     public GameObject swordStuff;
 
@@ -28,8 +27,8 @@ public class Player : MonoBehaviour
 
     public Weapon slot1;
     public Weapon slot2;
-
     public Weapon slot3;
+
 
     public GameObject gameSpawnerObj;
     public GameSpawner gameSpawner;
@@ -42,11 +41,8 @@ public class Player : MonoBehaviour
     void Start()
     {
         gameSpawner = gameSpawnerObj.GetComponent<GameSpawner>();
-        weapons.Add(slot1);
-        weapons.Add(slot2);
-        weapons.Add(slot3);
         swordAreaClass = swordArea.GetComponent<SwordArea>();
-        weapon = weapons[0];
+        weapon = slot1;
         healthBar = healthBarObj.GetComponent<Healthbar>();
         //Physics2D.IgnoreCollision(swordArea.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>());
     }
@@ -79,32 +75,6 @@ public class Player : MonoBehaviour
         }
         Rigidbody2D rigid = gameObject.GetComponent<Rigidbody2D>();
         
-        if (Input.GetAxis("Mouse ScrollWheel") > 0f)
-        {
-            if (weapons.IndexOf(weapon)+1 < 3) {
-                weapon = weapons[weapons.IndexOf(weapon) + 1];
-                swordArea.transform.localScale = new Vector3(weapon.range,weapon.range,weapon.range);
-            }
-            else
-            {
-                weapon = weapons[0];
-            }
-        }
-        else
-        {
-            if (Input.GetAxis("Mouse ScrollWheel") < 0f)
-            {
-                if (weapons.IndexOf(weapon) - 1 > -1)
-                {
-                    weapon = weapons[weapons.IndexOf(weapon) - 1];
-                    swordArea.transform.localScale = new Vector3(weapon.range, weapon.range, weapon.range);
-                }
-                else
-                {
-                    weapon = weapons[2];
-                }
-            }
-        }
         if (health <= 0f)
         {
             GetComponent<SpriteRenderer>().sprite = deadTexture;

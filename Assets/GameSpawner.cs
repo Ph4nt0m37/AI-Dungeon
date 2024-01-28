@@ -9,6 +9,9 @@ public class GameSpawner : MonoBehaviour
     public GameObject spawn2;
     public GameObject spawn3;
     public GameObject spawn4;
+    public GameObject shop;
+    public Sprite spriteOpen;
+    public Sprite spriteClosed;
     public List<GameObject> spawns = new List<GameObject>();
     public TextMeshProUGUI roundText;
     public int enemyCount = 0;
@@ -31,12 +34,17 @@ public class GameSpawner : MonoBehaviour
     {
         if (enemyCount <= 0)
         {
+            shop.GetComponent<SpriteRenderer>().sprite = spriteOpen;
             roundText.text = "Press space to\ngo to next\nround";
             if (Input.GetKeyDown(KeyCode.Space))
             {
                 startRound(roundNum);
                 roundNum++;
             }
+        }
+        else
+        {
+            shop.GetComponent<SpriteRenderer>().sprite = spriteClosed;
         }
     }
 

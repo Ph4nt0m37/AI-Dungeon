@@ -24,6 +24,7 @@ public class Enemy : MonoBehaviour
     {
         player = GameObject.Find("Player");
         gameSpawnerObj = GameObject.Find("GameSpawner");
+        playerClass = player.GetComponent<Player>();
         gameSpawner = gameSpawnerObj.GetComponent<GameSpawner>();
         health = 100 * (int) gameSpawner.difficulty;
         //Physics2D.IgnoreCollision(GetComponent<PolygonCollider2D>(), playerNo.GetComponent<TilemapCollider2D>(),false);
