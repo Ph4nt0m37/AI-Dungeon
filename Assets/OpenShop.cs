@@ -28,9 +28,9 @@ public class OpenShop : MonoBehaviour
         {
             shop.GetComponent<SpriteRenderer>().enabled = false;
             text.enabled = false;
-            item1.GetComponent<SpriteRenderer>().enabled = false;
-            item2.GetComponent<SpriteRenderer>().enabled = false;
-            item3.GetComponent<SpriteRenderer>().enabled = false;
+            item1.SetActive(false);
+            item2.SetActive(false);
+            item3.SetActive(false);
             freezeMovement = false;
         }
     }
@@ -40,9 +40,9 @@ public class OpenShop : MonoBehaviour
         {
             shop.GetComponent<SpriteRenderer>().enabled = true;
             text.enabled = true;
-            item1.GetComponent<SpriteRenderer>().enabled = true;
-            item2.GetComponent<SpriteRenderer>().enabled = true;
-            item3.GetComponent<SpriteRenderer>().enabled = true;
+            item1.SetActive(true);
+            item2.SetActive(true);
+            item3.SetActive(true);
             freezeMovement= true;
         }
     }

@@ -10,16 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 000a568340cd9f2479165e64921599b2, type: 3}
-  m_Name: melee2
+  m_Name: bat
   m_EditorClassIdentifier: 
-  damage: 65
+  damage: 105
   weight: 0
-  shotsPerSecond: 1
+  shotsPerSecond: 0
   modeOfFire: 0
   accuracy: 0
   velocity: 0
-  range: 3
-  count: 0
-  attackDelay: 0.5
+  range: 5
+  count: 1
+  attackDelay: 1.25
   aoe: 0
   weaponType: melee

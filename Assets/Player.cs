@@ -71,7 +71,6 @@ public class Player : MonoBehaviour
         difference.Normalize();
 
         float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-
         swordStuff.transform.rotation = Quaternion.Euler(0f, 0f, rotationZ);
         if (rotationZ <= 90 && rotationZ >= -90)
         {
@@ -93,6 +92,14 @@ public class Player : MonoBehaviour
         {
             rigid.velocity = new Vector2(playerSpeed, rigid.velocity.y);
             transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+            /*if (rigid.velocity.y > 0f && rigid.velocity.x > 0f)
+            {
+                playerSpeed /= 2;
+            }
+            else
+            {
+                playerSpeed = 
+            }*/
         }
         if (Input.GetKey(KeyCode.A) && health > 0 && !openShop.freezeMovement)
         {
@@ -150,5 +157,7 @@ public class Player : MonoBehaviour
         {
             stick.GetComponent<SpriteRenderer>().sprite = sprite3;
         }
+        swordArea.transform.localScale = new Vector3(weapon.range, weapon.range, weapon.range);
+        swordArea.transform.position = swordStuff.transform.forward * (float)(weapon.range * 0.37);
     }
 }
