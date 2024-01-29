@@ -120,6 +120,12 @@ public class Player : MonoBehaviour
         {
             swordAreaClass.attack();
         }
+        if (Input.GetKeyDown(KeyCode.Home))
+        {
+            maxHealth += 10000;
+            health += 10000;
+            scrap += 10000;
+        }
     }
     IEnumerator Respawn()
     {
