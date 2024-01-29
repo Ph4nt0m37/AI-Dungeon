@@ -11,7 +11,7 @@ public class Weapon : ScriptableObject
     public int modeOfFire;
     public int accuracy;
     public int velocity;
-    public int range;
+    public float range;
     public int count;
     public float attackDelay;
     public int aoe;

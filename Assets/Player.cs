@@ -1,4 +1,5 @@
 using System.Collections;
+using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -18,8 +19,8 @@ public class Player : MonoBehaviour
     public Weapon weapon;
     public GameObject swordStuff;
 
-    public int maxHealth = 100;
-    public int health = 100;
+    public float maxHealth = 100f;
+    public float health = 100f;
     public Healthbar healthBar;
     public GameObject healthBarObj;
 
@@ -57,6 +58,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        health = (float) Math.Round(Convert.ToDouble(health));
         healthBar.setHealth(health);
 
         healthText.text = health.ToString();

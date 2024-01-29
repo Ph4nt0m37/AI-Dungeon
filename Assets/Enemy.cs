@@ -12,10 +12,9 @@ public class Enemy : MonoBehaviour
 
     public Weapon weapon;
 
-    public int damage = 8;
+    public float strength = 8f;
     public float speed = 3f;
     public int health = 100;
-    public float attackRange = 5.25f;
 
     public GameObject gameSpawnerObj;
     public GameSpawner gameSpawner;
@@ -66,12 +65,12 @@ public class Enemy : MonoBehaviour
         }
         if (weapon.weaponType == "melee")
         {
-            if (Vector3.Distance(transform.position, player.transform.position) < attackRange)
+            if (Vector3.Distance(transform.position, player.transform.position) < weapon.range)
             {
                 if (!touching.Contains(player))
                 {
                     touching.Add(player);
-                    StartCoroutine(dealDamage(damage * (int)gameSpawner.difficulty));
+                    StartCoroutine(dealDamage(weapon.damage * gameSpawner.difficulty * strength));
                 }
             }
             else
@@ -81,7 +80,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    IEnumerator dealDamage(int damage)
+    IEnumerator dealDamage(float damage)
     {
         if (touching.Contains(player))
         {
@@ -89,7 +88,7 @@ public class Enemy : MonoBehaviour
             player.GetComponent<SpriteRenderer>().color = Color.red;
             yield return new WaitForSeconds(0.25f);
             player.GetComponent<SpriteRenderer>().color = Color.white;
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(weapon.attackDelay);
             StartCoroutine(dealDamage(damage));
         }
     }

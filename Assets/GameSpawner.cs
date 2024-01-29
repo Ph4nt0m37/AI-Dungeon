@@ -53,10 +53,7 @@ public class GameSpawner : MonoBehaviour
         roundText.text = "Round " + roundNum;
         for (int i = 0; i < roundNum; i++)
         {
-            foreach (GameObject spawn in spawns)
-            {
-                spawnEnemy(enemy1, spawn);
-            }
+            spawnEnemy(enemy1, spawns[i]);
         }
         difficulty += 0.125f;
     }
