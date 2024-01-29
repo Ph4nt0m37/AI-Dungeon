@@ -13,12 +13,13 @@ MonoBehaviour:
   m_Name: melee3
   m_EditorClassIdentifier: 
   damage: 105
+  weight: 0
   shotsPerSecond: 0
   modeOfFire: 0
   accuracy: 0
   velocity: 0
-  weight: 0
   range: 5
   count: 1
   attackDelay: 1.25
   aoe: 0
+  weaponType: melee
