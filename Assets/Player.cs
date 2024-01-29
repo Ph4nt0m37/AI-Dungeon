@@ -58,7 +58,6 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        health = (float) Math.Round(Convert.ToDouble(health));
         healthBar.setHealth(health);
 
         healthText.text = health.ToString();
@@ -126,6 +125,12 @@ public class Player : MonoBehaviour
     {
         yield return new WaitForSeconds(3);
         SceneManager.LoadScene("Title");
+    }
+    public IEnumerator takeDamage()
+    {
+        GetComponent<SpriteRenderer>().color = Color.red;
+        yield return new WaitForSeconds(0.25f);
+        GetComponent<SpriteRenderer>().color = Color.white;
     }
     public void setWeapon(Weapon weapon2)
     {

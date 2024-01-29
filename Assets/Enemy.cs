@@ -70,7 +70,7 @@ public class Enemy : MonoBehaviour
                 if (!touching.Contains(player))
                 {
                     touching.Add(player);
-                    StartCoroutine(dealDamage(weapon.damage * gameSpawner.difficulty * strength));
+                    StartCoroutine(dealDamage(Mathf.RoundToInt(weapon.damage * gameSpawner.difficulty * strength)));
                 }
             }
             else
@@ -85,9 +85,7 @@ public class Enemy : MonoBehaviour
         if (touching.Contains(player))
         {
             player.GetComponent<Player>().health -= damage;
-            player.GetComponent<SpriteRenderer>().color = Color.red;
-            yield return new WaitForSeconds(0.25f);
-            player.GetComponent<SpriteRenderer>().color = Color.white;
+            StartCoroutine(player.GetComponent<Player>().takeDamage());
             yield return new WaitForSeconds(weapon.attackDelay);
             StartCoroutine(dealDamage(damage));
         }
