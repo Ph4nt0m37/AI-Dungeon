@@ -10,9 +10,12 @@ public class Enemy : MonoBehaviour
     public GameObject player;
     public List<GameObject> touching = new List<GameObject>();
 
+    public Weapon weapon;
+
     public int damage = 8;
     public float speed = 3f;
     public int health = 100;
+    public float attackRange = 5.25f;
 
     public GameObject gameSpawnerObj;
     public GameSpawner gameSpawner;
@@ -57,17 +60,24 @@ public class Enemy : MonoBehaviour
         {
             transform.rotation = Quaternion.Euler(0f, 180f, 0f);
         }
-        if (Vector3.Distance(transform.position,player.transform.position) < 5.3)
+        if (weapon.weaponType == "gun")
         {
-            if (!touching.Contains(player))
-            {
-                touching.Add(player);
-                StartCoroutine(dealDamage(damage * (int) gameSpawner.difficulty));
-            }
+
         }
-        else
+        if (weapon.weaponType == "melee")
         {
-            touching.Remove(player);
+            if (Vector3.Distance(transform.position, player.transform.position) < attackRange)
+            {
+                if (!touching.Contains(player))
+                {
+                    touching.Add(player);
+                    StartCoroutine(dealDamage(damage * (int)gameSpawner.difficulty));
+                }
+            }
+            else
+            {
+                touching.Remove(player);
+            }
         }
     }
 

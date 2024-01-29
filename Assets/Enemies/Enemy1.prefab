@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 7086554928199211382}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -8.6, y: -1.15, z: 0}
-  m_LocalScale: {x: 5.4583087, y: 5.4583087, z: 5.4583087}
+  m_LocalScale: {x: 5.4, y: 5.4, z: 5.4}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -101,11 +101,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   touching: []
-  damage: 8
+  damage: 5
   speed: 0.05
   health: 100
+  attackRange: 5.25
   gameSpawnerObj: {fileID: 0}
   gameSpawner: {fileID: 0}
+  playerClass: {fileID: 0}
 --- !u!60 &7086554928199211275
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -131,16 +133,19 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.099999994, y: 0.099999994}
-      - {x: 0, y: 0.14999999}
-      - {x: -0.11, y: 0.14999999}
-      - {x: -0.16, y: 0.049999997}
-      - {x: -0.16, y: -0.08}
-      - {x: -0.13, y: -0.16}
+    - - {x: -0.000047504902, y: 0.07748934}
+      - {x: -0.007503474, y: 0.1349929}
+      - {x: -0.096243426, y: 0.13374229}
+      - {x: -0.098533295, y: 0.042860277}
+      - {x: -0.14499287, y: 0.049999997}
+      - {x: -0.14124088, y: -0.08750356}
+      - {x: -0.10015541, y: -0.08424944}
+      - {x: -0.11624342, y: -0.16750355}
       - {x: 0.04, y: -0.16}
-      - {x: 0.16, y: 0}
-      - {x: 0.16, y: 0.089999996}
-      - {x: 0.14999999, y: 0.11}
+      - {x: 0.024841081, y: -0.06670678}
+      - {x: 0.04869729, y: -0.025011852}
+      - {x: 0.032439604, y: 0.012463272}
+      - {x: 0.011184305, y: 0.04371862}
 --- !u!50 &8855849326808734296
 Rigidbody2D:
   serializedVersion: 4
