@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
@@ -16,6 +17,7 @@ public class OpenShop : MonoBehaviour
     public GameObject gameSpawn;
     public bool freezeMovement = false;
     GameSpawner gameSpawner;
+    public bool mouseOver = false;
     void Start()
     {
         gameSpawner = gameSpawn.GetComponent<GameSpawner>();
@@ -36,6 +38,7 @@ public class OpenShop : MonoBehaviour
     }
     public void OnMouseOver()
     {
+        mouseOver = true;
         if (Input.GetMouseButtonDown(0) && gameSpawner.enemyCount <= 0)
         {
             shop.GetComponent<SpriteRenderer>().enabled = true;
@@ -45,5 +48,9 @@ public class OpenShop : MonoBehaviour
             item3.SetActive(true);
             freezeMovement= true;
         }
+    }
+    public void OnMouseExit()
+    {
+        mouseOver = false;
     }
 }

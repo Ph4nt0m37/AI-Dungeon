@@ -15,6 +15,11 @@ public class SwordArea : MonoBehaviour
     public GameObject weapon;
     public SwingWeapon swingWeapon;
 
+    public GameObject shop;
+    public OpenShop openShop;
+
+    public bool isEnabled = false;
+
     public float cooldown = 0f;
     // Start is called before the first frame update
     void Start()
@@ -22,6 +27,7 @@ public class SwordArea : MonoBehaviour
         //Physics2D.IgnoreCollision(walls.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>());
         swing = swingArc.GetComponent<Swing>();
         swingWeapon = weapon.GetComponent<SwingWeapon>();
+        openShop = shop.GetComponent<OpenShop>();
     }
 
     // Update is called once per frame
@@ -53,6 +59,18 @@ public class SwordArea : MonoBehaviour
         if (collision.gameObject != player && collision.gameObject.GetComponent<Enemy>() != null)
         {
             touching.Add(collision.gameObject);
+        }
+    }
+    public void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.gameObject == shop && openShop.mouseOver)
+        {
+            isEnabled = false;
+            GetComponent<CircleCollider2D>().enabled = false;
+        }
+        else
+        {
+            isEnabled = true;
         }
     }
     public void OnTriggerExit2D(Collider2D collision)

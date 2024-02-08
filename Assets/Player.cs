@@ -36,6 +36,9 @@ public class Player : MonoBehaviour
     public Weapon slot3;
     public Sprite sprite3;
 
+    public List<Weapon> weaponsRanking = new List<Weapon>();
+    public List<Sprite> spritesRanking = new List<Sprite>();
+
     public GameObject stick;
     public GameObject gameSpawnerObj;
     public GameSpawner gameSpawner;
@@ -44,13 +47,16 @@ public class Player : MonoBehaviour
     public int scrap;
     public TextMeshProUGUI scrapText;
 
+    public bool spin = true;
+    float rotationZ;
+
     // Start is called before the first frame update
     void Start()
     {
         openShop = shop.GetComponent<OpenShop>();
         gameSpawner = gameSpawnerObj.GetComponent<GameSpawner>();
         swordAreaClass = swordArea.GetComponent<SwordArea>();
-        weapon = slot1;
+        weapon = weaponsRanking[0];
         healthBar = healthBarObj.GetComponent<Healthbar>();
         //Physics2D.IgnoreCollision(swordArea.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>());
     }
@@ -65,13 +71,15 @@ public class Player : MonoBehaviour
         scrapText.text = scrap.ToString()+" Scrap";
 
         swordStuff.transform.position = gameObject.transform.position;
+        if (spin)
+        {
+            Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - swordStuff.transform.position;
 
-        Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - swordStuff.transform.position;
+            difference.Normalize();
 
-        difference.Normalize();
-
-        float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-        swordStuff.transform.rotation = Quaternion.Euler(0f, 0f, rotationZ);
+            rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
+            swordStuff.transform.rotation = Quaternion.Euler(0f, 0f, rotationZ);
+        }
         if (rotationZ <= 90 && rotationZ >= -90)
         {
             transform.rotation = Quaternion.Euler(0f, 0f, 0f);
@@ -145,19 +153,16 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(0.25f);
         GetComponent<SpriteRenderer>().color = Color.white;
     }
-    public void setWeapon(Weapon weapon2)
+    public void setWeapon(Weapon weapon2,Sprite sprite)
     {
-        weapon = weapon2;   
-        if (weapon2==slot2)
-        {
-            Debug.Log("test");
-            stick.GetComponent<SpriteRenderer>().sprite = sprite2;
-        }
-        if (weapon2 == slot3)
-        {
-            stick.GetComponent<SpriteRenderer>().sprite = sprite3;
-        }
+        weapon = weapon2;
+        stick.GetComponent<SpriteRenderer>().sprite = sprite;
+        spin = false;
+        swordStuff.transform.rotation = Quaternion.Euler(0f,0f,0f);
+        float oldRadius = swordArea.transform.localScale.x;
         swordArea.transform.localScale = new Vector3(weapon.range, weapon.range, weapon.range);
-        swordArea.transform.position = swordStuff.transform.forward * (float)(weapon.range * 0.37);
+        swordArea.transform.Translate(new Vector3((weapon.range-oldRadius)/1.41f, 0, 0));
+        Debug.Log($"oldRad = {oldRadius} | newRad = {weapon.range} | radDif = {weapon.range - oldRadius}");
+        spin = true;
     }
 }

@@ -22,17 +22,9 @@ public class item1 : MonoBehaviour
             if (player.scrap >= 15)
             {
                 StartCoroutine(setColor(Color.green));
-                if (player.weapon == player.slot1)
-                {
-                    player.setWeapon(player.slot2);
-                    player.scrap -= 15;
-                }
-                else if (player.weapon == player.slot2)
-                {
-                    player.setWeapon(player.slot3);
-                    player.scrap -= 15;
-                }
-                else
+                player.setWeapon(player.weaponsRanking[player.weaponsRanking.IndexOf(player.weapon) + 1], player.spritesRanking[player.weaponsRanking.IndexOf(player.weapon) + 1]);
+                player.scrap -= 15;
+                if (player.scrap < 15)
                 {
                     StartCoroutine(setColor(Color.red));
                 }

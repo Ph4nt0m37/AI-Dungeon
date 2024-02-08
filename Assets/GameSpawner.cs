@@ -1,6 +1,8 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class GameSpawner : MonoBehaviour
@@ -53,7 +55,7 @@ public class GameSpawner : MonoBehaviour
         roundText.text = "Round " + roundNum;
         for (int i = 0; i < roundNum; i++)
         {
-            spawnEnemy(enemy1, spawns[i]);
+            spawnEnemy(enemy1, spawns[UnityEngine.Random.Range(0,3)]);
         }
         difficulty += 0.125f;
     }
