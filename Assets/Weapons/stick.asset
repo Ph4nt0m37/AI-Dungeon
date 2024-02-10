@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 45
   weight: 0
-  shotsPerSecond: 1
-  modeOfFire: 0
+  shotsPerAttack: 1
+  delayBetweenAttacks: 0
   accuracy: 0
   velocity: 0
   range: 1.5
@@ -23,3 +23,4 @@ MonoBehaviour:
   attackDelay: 0.25
   aoe: 1
   weaponType: melee
+  specialAbility: none

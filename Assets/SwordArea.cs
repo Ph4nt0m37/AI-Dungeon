@@ -6,11 +6,15 @@ using UnityEngine;
 public class SwordArea : MonoBehaviour
 {
     public GameObject player;
+    public Player playerClass;
     public List<GameObject> touching2 = new List<GameObject>();
     public GameObject walls;
 
     public GameObject swingArc;
     public Swing swing;
+
+    public GameObject bullet;
+    public GameObject bulletPrefab;
 
     public GameObject weapon;
     public SwingWeapon swingWeapon;
@@ -18,9 +22,12 @@ public class SwordArea : MonoBehaviour
     public GameObject shop;
     public OpenShop openShop;
 
+    public GameObject swordStuff;
+    public GameObject bullets;
+
     public bool isEnabled = false;
 
-    public float cooldown = 0f;
+    //public float cooldown = 0f;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +35,7 @@ public class SwordArea : MonoBehaviour
         swing = swingArc.GetComponent<Swing>();
         swingWeapon = weapon.GetComponent<SwingWeapon>();
         openShop = shop.GetComponent<OpenShop>();
+        playerClass = player.GetComponent<Player>();
     }
 
     // Update is called once per frame
@@ -37,20 +45,23 @@ public class SwordArea : MonoBehaviour
     }
     public void attack()
     {
-        if (cooldown <= 0)
+        if (playerClass.weapon.weaponType != "gun")
         {
             swing.swing();
             try
             {
                 foreach (GameObject obj in touching2)
                 {
-                    StartCoroutine(dealDamage(player.GetComponent<Player>().weapon.damage,obj));
+                    StartCoroutine(obj.GetComponent<Enemy>().takeDamage(player.GetComponent<Player>().weapon.damage,null));
                 }
-                cooldown = player.GetComponent<Player>().weapon.attackDelay;
-                Debug.Log(cooldown);
-                StartCoroutine(decreaseCooldown(cooldown));
+                //cooldown = player.GetComponent<Player>().weapon.attackDelay;
+                //StartCoroutine(decreaseCooldown(cooldown));
             }
             catch { }
+        }
+        else
+        {
+            Instantiate(bulletPrefab, bullet.transform.position, swordStuff.transform.rotation,bullets.transform);
         }
     }
 
@@ -71,25 +82,9 @@ public class SwordArea : MonoBehaviour
         //GetComponent<CircleCollider2D>().enabled = true;
     }
 
-    IEnumerator decreaseCooldown(float cooldown2)
+    /*IEnumerator decreaseCooldown(float cooldown2)
     {
         yield return new WaitForSeconds(cooldown2);
         cooldown = 0f;
-    }
-
-    IEnumerator dealDamage(float damage, GameObject obj)
-    {
-        obj.gameObject.GetComponent<Enemy>().health -= player.GetComponent<Player>().weapon.damage;
-        if (obj != null)
-        {
-            obj.GetComponent<SpriteRenderer>().color = Color.red;
-            yield return new WaitForSeconds(0.25f);
-            try
-            {
-                obj.GetComponent<SpriteRenderer>().color = Color.white;
-            }catch{
-
-            }
-        }
-    }
+    }*/
 }

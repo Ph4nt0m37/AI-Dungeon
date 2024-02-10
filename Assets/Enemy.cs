@@ -96,4 +96,19 @@ public class Enemy : MonoBehaviour
             StartCoroutine(dealDamage(damage));
         }
     }
+    public IEnumerator takeDamage(int damage, GameObject bullet)
+    {
+        health -= damage;
+        GetComponent<SpriteRenderer>().color = Color.red;
+        yield return new WaitForSeconds(0.25f);
+        try
+        {
+            GetComponent<SpriteRenderer>().color = Color.white;
+        }
+        catch
+        {}
+        if (bullet!=null) { 
+            Destroy(bullet);
+        }
+    }
 }

@@ -51,6 +51,8 @@ public class Player : MonoBehaviour
     public bool spin = true;
     float rotationZ;
 
+    public bool onCooldown = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -134,7 +136,10 @@ public class Player : MonoBehaviour
         }
         if (Input.GetMouseButtonDown(0))
         {
-            swordAreaClass.attack();
+            if (!onCooldown)
+            {
+                StartCoroutine(startAttacks(weapon.delayBetweenAttacks));
+            }
         }
         if (Input.GetKeyDown(KeyCode.Home))
         {
@@ -158,14 +163,36 @@ public class Player : MonoBehaviour
     {
         weapon = weapon2;
         stick.GetComponent<SpriteRenderer>().sprite = sprite;
-        spin = false;
-        swordStuff.transform.rotation = Quaternion.Euler(0f,0f,0f);
-        float oldRadius = swordArea.transform.localScale.x;
-        swordArea.transform.localScale = new Vector3(weapon.range, weapon.range, weapon.range);
-        swing.transform.localScale = new Vector3(weapon.range/2, weapon.range / 2, weapon.range / 2);
-        swordArea.transform.Translate(new Vector3((weapon.range-oldRadius)/1.6f, 0, 0));
-        //swing.transform.Translate(new Vector3((weapon.range - oldRadius) / 0.45f, 0, 0));
-        Debug.Log($"oldRad = {oldRadius} | newRad = {weapon.range} | radDif = {weapon.range - oldRadius}");
-        spin = true;
+        if (weapon2.weaponType == "melee")
+        {
+            spin = false;
+            swordStuff.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
+            float oldRadius = swordArea.transform.localScale.x;
+            swordArea.transform.localScale = new Vector3(weapon.range, weapon.range, weapon.range);
+            swing.transform.localScale = new Vector3(weapon.range / 2, weapon.range / 2, weapon.range / 2);
+            swordArea.transform.Translate(new Vector3((weapon.range - oldRadius) / 1.6f, 0, 0));
+            //swing.transform.Translate(new Vector3((weapon.range - oldRadius) / 0.45f, 0, 0));
+            Debug.Log($"oldRad = {oldRadius} | newRad = {weapon.range} | radDif = {weapon.range - oldRadius}");
+            spin = true;
+        }
+        else if (weapon2.weaponType == "gun")
+        {
+
+        }
+    }
+    IEnumerator attackCooldownTimer(float cooldown)
+    {
+        onCooldown = true;
+        yield return new WaitForSeconds(cooldown);
+        onCooldown = false;
+    }
+    IEnumerator startAttacks(float attackCooldown)
+    {
+        StartCoroutine(attackCooldownTimer(weapon.attackDelay));
+        for (int i = 0; i < weapon.shotsPerAttack; i++)
+        {
+            swordAreaClass.attack();
+            yield return new WaitForSeconds(attackCooldown);
+        }
     }
 }

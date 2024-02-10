@@ -12,14 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 000a568340cd9f2479165e64921599b2, type: 3}
   m_Name: gun1
   m_EditorClassIdentifier: 
-  damage: 12
+  damage: 20
   weight: 0
-  shotsPerSecond: 4
-  modeOfFire: 1
+  shotsPerAttack: 1
+  delayBetweenAttacks: 0
   accuracy: 0
   velocity: 10
   range: 1
   count: 1
-  attackDelay: 0
+  attackDelay: 1
   aoe: 0
   weaponType: gun
+  specialAbility: none

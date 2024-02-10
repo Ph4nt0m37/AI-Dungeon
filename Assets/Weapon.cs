@@ -7,13 +7,14 @@ public class Weapon : ScriptableObject
 {
     public int damage;
     public int weight;
-    public int shotsPerSecond;
-    public int modeOfFire;
+    public int shotsPerAttack = 1;
+    public float delayBetweenAttacks = 0;
     public int accuracy;
     public int velocity;
     public float range;
     public int count;
     public float attackDelay;
     public int aoe;
-    public string weaponType;
+    public string weaponType = "melee";
+    public string specialAbility = "none";
 }
