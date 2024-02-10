@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
 {
     public GameObject swordArea;
     public SwordArea swordAreaClass;
+    public GameObject swing;
     public float playerSpeed = 4f;
     public GameObject cam;
     public Weapon weapon;
@@ -161,7 +162,9 @@ public class Player : MonoBehaviour
         swordStuff.transform.rotation = Quaternion.Euler(0f,0f,0f);
         float oldRadius = swordArea.transform.localScale.x;
         swordArea.transform.localScale = new Vector3(weapon.range, weapon.range, weapon.range);
-        swordArea.transform.Translate(new Vector3((weapon.range-oldRadius)/1.41f, 0, 0));
+        swing.transform.localScale = new Vector3(weapon.range/2, weapon.range / 2, weapon.range / 2);
+        swordArea.transform.Translate(new Vector3((weapon.range-oldRadius)/1.6f, 0, 0));
+        //swing.transform.Translate(new Vector3((weapon.range - oldRadius) / 0.45f, 0, 0));
         Debug.Log($"oldRad = {oldRadius} | newRad = {weapon.range} | radDif = {weapon.range - oldRadius}");
         spin = true;
     }

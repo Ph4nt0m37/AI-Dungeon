@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -17,7 +18,9 @@ public class Enemy : MonoBehaviour
     public int health = 100;
 
     public GameObject gameSpawnerObj;
+    public GameObject swordArea;
     public GameSpawner gameSpawner;
+    public SwordArea swordAreaClass;
 
     public Player playerClass;
 
@@ -26,8 +29,10 @@ public class Enemy : MonoBehaviour
     {
         player = GameObject.Find("Player");
         gameSpawnerObj = GameObject.Find("GameSpawner");
+        swordArea = GameObject.Find("SwordArea");
         playerClass = player.GetComponent<Player>();
         gameSpawner = gameSpawnerObj.GetComponent<GameSpawner>();
+        swordAreaClass = swordArea.GetComponent<SwordArea>();
         health = 100 * (int) gameSpawner.difficulty;
         //Physics2D.IgnoreCollision(GetComponent<PolygonCollider2D>(), playerNo.GetComponent<TilemapCollider2D>(),false);
     }
@@ -39,6 +44,7 @@ public class Enemy : MonoBehaviour
         {
             Destroy(gameObject);
             gameSpawner.enemyCount--;
+            //swordAreaClass.touching2.Remove(gameObject);
             playerClass.scrap += 1;
         }
         Rigidbody2D rigid = GetComponent<Rigidbody2D>();

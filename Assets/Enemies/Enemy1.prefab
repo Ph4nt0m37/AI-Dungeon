@@ -106,7 +106,9 @@ MonoBehaviour:
   speed: 0.05
   health: 100
   gameSpawnerObj: {fileID: 0}
+  swordArea: {fileID: 0}
   gameSpawner: {fileID: 0}
+  swordAreaClass: {fileID: 0}
   playerClass: {fileID: 0}
 --- !u!60 &7086554928199211275
 PolygonCollider2D:

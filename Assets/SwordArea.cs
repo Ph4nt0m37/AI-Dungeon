@@ -6,7 +6,7 @@ using UnityEngine;
 public class SwordArea : MonoBehaviour
 {
     public GameObject player;
-    public List<GameObject> touching = new List<GameObject>();
+    public List<GameObject> touching2 = new List<GameObject>();
     public GameObject walls;
 
     public GameObject swingArc;
@@ -42,7 +42,7 @@ public class SwordArea : MonoBehaviour
             swing.swing();
             try
             {
-                foreach (GameObject obj in touching)
+                foreach (GameObject obj in touching2)
                 {
                     StartCoroutine(dealDamage(player.GetComponent<Player>().weapon.damage,obj));
                 }
@@ -58,27 +58,17 @@ public class SwordArea : MonoBehaviour
     {
         if (collision.gameObject != player && collision.gameObject.GetComponent<Enemy>() != null)
         {
-            touching.Add(collision.gameObject);
+            touching2.Add(collision.gameObject);
         }
-    }
-    public void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.gameObject == shop && openShop.mouseOver)
-        {
-            isEnabled = false;
-            GetComponent<CircleCollider2D>().enabled = false;
-        }
-        else
-        {
-            isEnabled = true;
-        }
+       //GetComponent<CircleCollider2D>().enabled = false;
     }
     public void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.gameObject != player && collision.gameObject.GetComponent<Enemy>() != null)
         {
-            touching.Remove(collision.gameObject);
+            touching2.Remove(collision.gameObject);
         }
+        //GetComponent<CircleCollider2D>().enabled = true;
     }
 
     IEnumerator decreaseCooldown(float cooldown2)

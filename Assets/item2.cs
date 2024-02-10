@@ -24,9 +24,9 @@ public class item2 : MonoBehaviour
             if (player.scrap >= 3)
             {
                 StartCoroutine(setColor(Color.green));
-                if (player.health + (player.health / 2)+5 < player.maxHealth)
+                if (player.health + (player.maxHealth / 2)+5 < player.maxHealth)
                 {
-                    player.health += (player.health / 2)+5;
+                    player.health += (player.maxHealth / 2)+5;
                     player.scrap -= 3;
                 }
                 else
@@ -34,6 +34,7 @@ public class item2 : MonoBehaviour
                     if (player.health!=player.maxHealth)
                     {
                         player.health = player.maxHealth;
+                        player.scrap -= 3;
                     }
                     else
                     {
