@@ -45,7 +45,7 @@ public class SwordArea : MonoBehaviour
     }
     public void attack()
     {
-        if (playerClass.weapon.weaponType != "gun")
+        if (playerClass.weapon.weaponType == "melee")
         {
             swing.swing();
             try
@@ -59,7 +59,7 @@ public class SwordArea : MonoBehaviour
             }
             catch { }
         }
-        else
+        else if (playerClass.weapon.weaponType == "gun" || playerClass.weapon.weaponType == "auto")
         {
             Instantiate(bulletPrefab, bullet.transform.position, swordStuff.transform.rotation,bullets.transform);
         }

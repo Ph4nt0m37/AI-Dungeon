@@ -13,14 +13,13 @@ MonoBehaviour:
   m_Name: stick
   m_EditorClassIdentifier: 
   damage: 45
-  weight: 0
+  weight: 1
   shotsPerAttack: 1
   delayBetweenAttacks: 0
   accuracy: 0
   velocity: 0
   range: 1.5
-  count: 0
-  attackDelay: 0.25
+  attackCooldown: 0.5
   aoe: 1
   weaponType: melee
   specialAbility: none
