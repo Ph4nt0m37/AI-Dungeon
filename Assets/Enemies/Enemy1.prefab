@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 7086554928199211383}
   - component: {fileID: 7086554928199211275}
   - component: {fileID: 8855849326808734296}
+  - component: {fileID: 2370555138384549360}
   m_Layer: 0
   m_Name: Enemy1
   m_TagString: Enemy
@@ -96,14 +97,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 7086554928199211382}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 164ac3893f1d6e840889a0534e0d08f6, type: 3}
+  m_Script: {fileID: 11500000, guid: 9b3326095ff9f074a9019dd5427411ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
   touching: []
   weapon: {fileID: 11400000, guid: 4cec4e6776e9a874490d183c05e3597a, type: 2}
   strength: 1
-  speed: 0.05
+  speed: 0.03
   health: 100
   gameSpawnerObj: {fileID: 0}
   swordArea: {fileID: 0}
@@ -169,3 +170,25 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
+--- !u!195 &2370555138384549360
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7086554928199211382}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.16000001
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 0.32000002
+  m_BaseOffset: 0.16000001
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
