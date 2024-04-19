@@ -4937,7 +4937,6 @@ MonoBehaviour:
   swordAreaClass: {fileID: 0}
   swing: {fileID: 598464865}
   playerSpeed: 4
-  playerSpeedWithWeight: 4
   cam: {fileID: 519420028}
   weapon: {fileID: 0}
   swordStuff: {fileID: 115605286}
@@ -4959,14 +4958,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c2307dfd8247a004f82148d7aad50b30, type: 2}
   - {fileID: 11400000, guid: 0eaf9bbbd35df3145845980d8aedfd9f, type: 2}
   - {fileID: 11400000, guid: 4032e3a976ba3524faf1590959d6d29e, type: 2}
-  - {fileID: 11400000, guid: 776c14b1076486246a3a6c64b5da34ab, type: 2}
   - {fileID: 11400000, guid: 937f6d23818f43845830b2a052bd0faa, type: 2}
   spritesRanking:
   - {fileID: 21300000, guid: 6bd4e6544043d1e4c9baa8f58bf88a3d, type: 3}
   - {fileID: 21300000, guid: 94ab6135367985e4791aad390cb47b7f, type: 3}
   - {fileID: 21300000, guid: ad47ee6e714ffb349a6d6c1d000fba0a, type: 3}
   - {fileID: 21300000, guid: c260046668ba0a64e854cf436cd95612, type: 3}
-  - {fileID: 21300000, guid: ad47ee6e714ffb349a6d6c1d000fba0a, type: 3}
   - {fileID: 21300000, guid: c260046668ba0a64e854cf436cd95612, type: 3}
   stick: {fileID: 2114405396}
   gameSpawnerObj: {fileID: 64088664}
@@ -4976,9 +4973,12 @@ MonoBehaviour:
   scrapText: {fileID: 1162177523}
   spin: 1
   onCooldown: 0
+<<<<<<< HEAD
   attackTime: 0
   wait: 0
   wait2: 0
+=======
+>>>>>>> parent of fb5cbc5 (added minigun )pain))
 --- !u!60 &699565064
 PolygonCollider2D:
   m_ObjectHideFlags: 0

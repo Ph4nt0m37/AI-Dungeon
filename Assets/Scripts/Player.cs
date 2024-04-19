@@ -16,7 +16,6 @@ public class Player : MonoBehaviour
     public SwordArea swordAreaClass;
     public GameObject swing;
     public float playerSpeed = 4f;
-    public float playerSpeedWithWeight = 4f;
     public GameObject cam;
     public Weapon weapon;
     public GameObject swordStuff;
@@ -54,10 +53,6 @@ public class Player : MonoBehaviour
 
     public bool onCooldown = false;
 
-    public double attackTime = 0;
-    public bool wait = false;
-    public bool wait2 = false;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -66,7 +61,6 @@ public class Player : MonoBehaviour
         swordAreaClass = swordArea.GetComponent<SwordArea>();
         weapon = weaponsRanking[0];
         healthBar = healthBarObj.GetComponent<Healthbar>();
-        playerSpeedWithWeight = playerSpeed;
         //Physics2D.IgnoreCollision(swordArea.GetComponent<Collider2D>(), gameObject.GetComponent<Collider2D>());
     }
 
@@ -74,18 +68,12 @@ public class Player : MonoBehaviour
     void Update()
     {
         healthBar.setHealth(health);
-        playerSpeedWithWeight = playerSpeed / weapon.weight;
+
         healthText.text = health.ToString();
 
         scrapText.text = scrap.ToString()+" Scrap";
 
         swordStuff.transform.position = gameObject.transform.position;
-
-        if (!Input.GetMouseButton(0) && attackTime > 0 && !wait2 && weapon.weaponType == "auto")
-        { 
-            StartCoroutine(decreaseAttackTime(weapon.delayBetweenAttacks));
-        }
-
         if (spin)
         {
             Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - swordStuff.transform.position;
@@ -113,29 +101,29 @@ public class Player : MonoBehaviour
         }
         if (Input.GetKey(KeyCode.D) && health>0 && !openShop.freezeMovement)
         {
-            rigid.velocity = new Vector2(playerSpeedWithWeight, rigid.velocity.y);
+            rigid.velocity = new Vector2(playerSpeed, rigid.velocity.y);
             transform.rotation = Quaternion.Euler(0f, 0f, 0f);
             /*if (rigid.velocity.y > 0f && rigid.velocity.x > 0f)
             {
-                playerSpeedWithWeight /= 2;
+                playerSpeed /= 2;
             }
             else
             {
-                playerSpeedWithWeight = 
+                playerSpeed = 
             }*/
         }
         if (Input.GetKey(KeyCode.A) && health > 0 && !openShop.freezeMovement)
         {
-            rigid.velocity = new Vector2(-1* playerSpeedWithWeight, rigid.velocity.y);
+            rigid.velocity = new Vector2(-1* playerSpeed, rigid.velocity.y);
             transform.rotation = Quaternion.Euler(0f, 180f, 0f);
         }
         if (Input.GetKey(KeyCode.S) && health > 0 && !openShop.freezeMovement)
         {
-            rigid.velocity = new Vector2(rigid.velocity.x,-1* playerSpeedWithWeight);
+            rigid.velocity = new Vector2(rigid.velocity.x,-1* playerSpeed);
         }
         if (Input.GetKey(KeyCode.W) && health > 0 && !openShop.freezeMovement)
         {
-            rigid.velocity = new Vector2(rigid.velocity.x, playerSpeedWithWeight);
+            rigid.velocity = new Vector2(rigid.velocity.x, playerSpeed);
         }
 
         if (!Input.GetKey(KeyCode.W) && !Input.GetKey(KeyCode.S))
@@ -150,15 +138,8 @@ public class Player : MonoBehaviour
         {
             if (!onCooldown)
             {
-                if (weapon.weaponType!="auto")
-                {
-                    StartCoroutine(startAttacks(weapon.delayBetweenAttacks));
-                }
+                StartCoroutine(startAttacks(weapon.delayBetweenAttacks));
             }
-        }
-        if (Input.GetMouseButton(0) && !wait && weapon.weaponType == "auto")
-        {
-            StartCoroutine(startAttacksAuto(weapon.delayBetweenAttacks));
         }
         if (Input.GetKeyDown(KeyCode.Home))
         {
@@ -194,7 +175,7 @@ public class Player : MonoBehaviour
             Debug.Log($"oldRad = {oldRadius} | newRad = {weapon.range} | radDif = {weapon.range - oldRadius}");
             spin = true;
         }
-        else if (weapon2.weaponType == "gun" || weapon2.weaponType == "auto")
+        else if (weapon2.weaponType == "gun")
         {
 
         }
@@ -203,45 +184,15 @@ public class Player : MonoBehaviour
     {
         onCooldown = true;
         yield return new WaitForSeconds(cooldown);
-        stick.GetComponent<SpriteRenderer>().color = Color.white;
         onCooldown = false;
     }
-    IEnumerator startAttacks(float attackDelay)
+    IEnumerator startAttacks(float attackCooldown)
     {
-        StartCoroutine(attackCooldownTimer(weapon.attackCooldown));
+        StartCoroutine(attackCooldownTimer(weapon.attackDelay));
         for (int i = 0; i < weapon.shotsPerAttack; i++)
         {
             swordAreaClass.attack();
-            yield return new WaitForSeconds(attackDelay);
-        }
-    }
-
-    IEnumerator decreaseAttackTime(float attackDelay)
-    {
-        wait2 = true;
-        yield return new WaitForSeconds(attackDelay);
-        wait2 = false;
-        attackTime -= attackDelay;
-        double limit = 255 / weapon.attackCooldown;
-        stick.GetComponent<SpriteRenderer>().color = new Color(255, (float)((float)attackTime * limit), (float)((float)attackTime * limit));
-    }
-    IEnumerator startAttacksAuto(float attackDelay)
-    {
-        if (!onCooldown)
-        {
-            swordAreaClass.attack();
-            wait = true;
-            yield return new WaitForSeconds(attackDelay);
-            wait = false;
-            attackTime += attackDelay;
-            double limit = 255 / weapon.attackCooldown;
-            stick.GetComponent<SpriteRenderer>().color = new Color(255, (float)((float) attackTime * limit), (float)((float) attackTime * limit));
-            if (attackTime >= weapon.attackCooldown)
-            {
-                attackTime = 0;
-                stick.GetComponent<SpriteRenderer>().color = Color.red;
-                StartCoroutine(attackCooldownTimer(weapon.attackCooldown));
-            }
+            yield return new WaitForSeconds(attackCooldown);
         }
     }
 }

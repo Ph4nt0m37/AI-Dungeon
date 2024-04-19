@@ -104,7 +104,7 @@ public class Enemy : MonoBehaviour
         {
             player.GetComponent<Player>().health -= damage;
             StartCoroutine(player.GetComponent<Player>().takeDamage());
-            yield return new WaitForSeconds(weapon.attackCooldown);
+            yield return new WaitForSeconds(weapon.attackDelay);
             StartCoroutine(dealDamage(damage));
         }
     }

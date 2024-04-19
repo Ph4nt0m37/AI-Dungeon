@@ -6,13 +6,14 @@ using UnityEngine;
 public class Weapon : ScriptableObject
 {
     public int damage;
-    public float weight = 1;
+    public int weight;
     public int shotsPerAttack = 1;
     public float delayBetweenAttacks = 0;
     public int accuracy;
     public int velocity;
     public float range;
-    public float attackCooldown;
+    public int count;
+    public float attackDelay;
     public int aoe;
     public string weaponType = "melee";
     public string specialAbility = "none";
