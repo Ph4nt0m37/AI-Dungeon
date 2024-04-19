@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.AI;
 using UnityEngine.Tilemaps;
 using static UnityEngine.GraphicsBuffer;
 
@@ -13,14 +12,10 @@ public class Enemy : MonoBehaviour
     public List<GameObject> touching = new List<GameObject>();
 
     public Weapon weapon;
-    private NavMeshAgent agent;
 
     public float strength = 8f;
     public float speed = 3f;
     public int health = 100;
-
-    //public float aggressiveness = 50.0f;
-    //public float aggressiveness = 50.0f;
 
     public GameObject gameSpawnerObj;
     public GameObject swordArea;
@@ -42,16 +37,9 @@ public class Enemy : MonoBehaviour
         //Physics2D.IgnoreCollision(GetComponent<PolygonCollider2D>(), playerNo.GetComponent<TilemapCollider2D>(),false);
     }
 
-    private void Awake()
-    {
-        agent = GetComponent<NavMeshAgent>();
-        agent.updateRotation = false;
-        agent.updateUpAxis = false;
-    }
     // Update is called once per frame
     void Update()
     {
-        agent.SetDestination(new Vector3(player.transform.position.x,player.transform.position.y,transform.position.z));
         if (health <= 0)
         {
             Destroy(gameObject);
@@ -60,13 +48,13 @@ public class Enemy : MonoBehaviour
             playerClass.scrap += 1;
         }
         Rigidbody2D rigid = GetComponent<Rigidbody2D>();
-        /*Vector3 movePosition = transform.position;
+        Vector3 movePosition = transform.position;
 
         movePosition.x = Mathf.MoveTowards(transform.position.x, player.transform.position.x, speed);
         movePosition.y = Mathf.MoveTowards(transform.position.y, player.transform.position.y, speed);
 
         rigid.MovePosition(movePosition);
-        rigid.velocity = Vector3.MoveTowards(transform.position, player.transform.position, speed);*/
+        rigid.velocity = Vector3.MoveTowards(transform.position, player.transform.position, speed);
         Vector2 difference = player.transform.position - transform.position;
         float rotationZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
         if (rotationZ <= 90 && rotationZ >= -90)

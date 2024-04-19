@@ -14,12 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 5
   weight: 0
-  shotsPerAttack: 1
-  delayBetweenAttacks: 0
+  shotsPerSecond: 0
+  modeOfFire: 0
   accuracy: 0
   velocity: 0
   range: 5.27
-  attackCooldown: 1
+  count: 0
+  attackDelay: 0.5
   aoe: 0
   weaponType: melee
-  specialAbility: none
