@@ -4974,12 +4974,9 @@ MonoBehaviour:
   spin: 1
   onCooldown: 0
 <<<<<<< HEAD
-<<<<<<< HEAD
   attackTime: 0
   wait: 0
   wait2: 0
-=======
->>>>>>> parent of fb5cbc5 (added minigun )pain))
 =======
 >>>>>>> parent of fb5cbc5 (added minigun )pain))
 --- !u!60 &699565064
