@@ -13,14 +13,13 @@ MonoBehaviour:
   m_Name: gun1
   m_EditorClassIdentifier: 
   damage: 20
-  weight: 0
+  weight: 1
   shotsPerAttack: 1
   delayBetweenAttacks: 0
   accuracy: 0
-  velocity: 10
+  velocity: 20
   range: 1
-  count: 1
-  attackDelay: 1
+  attackCooldown: 0.5
   aoe: 0
   weaponType: gun
   specialAbility: none

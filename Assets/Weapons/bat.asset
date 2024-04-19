@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: bat
   m_EditorClassIdentifier: 
   damage: 105
-  weight: 0
-  shotsPerSecond: 0
-  modeOfFire: 0
+  weight: 1.2
+  shotsPerAttack: 1
+  delayBetweenAttacks: 0
   accuracy: 0
   velocity: 0
   range: 3
-  count: 1
-  attackDelay: 1.25
+  attackCooldown: 1.5
   aoe: 0
   weaponType: melee
+  specialAbility: none
